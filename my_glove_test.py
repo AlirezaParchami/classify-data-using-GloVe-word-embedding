@@ -7,15 +7,11 @@ from glove import Corpus
 
 
 def read_corpus(filename):
-    delchars = [chr(c) for c in range(256)]
-    delchars = [x for x in delchars if not x.isalnum()]
-    delchars.remove(' ')
-    delchars = ''.join(delchars)
 
     with open(filename, 'r') as datafile:
         for line in datafile:
             #print(line.lower().split(' '))
-            yield line.lower().translate(delchars).split(' ')
+            yield line.lower().split(' ')
 
 
 
@@ -48,7 +44,7 @@ print('Training the GloVe model')
 
 glove = Glove(no_components=100, learning_rate=0.05)
 glove.fit(corpus_model.matrix, epochs=int(10),
-          verbose=True)
+          no_threads=4 ,verbose=True)
 glove.add_dictionary(corpus_model.dictionary)
 glove.save('glove.model')
 

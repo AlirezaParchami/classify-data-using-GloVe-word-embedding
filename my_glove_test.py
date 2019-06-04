@@ -1,7 +1,4 @@
 from __future__ import print_function
-import argparse
-import pprint
-
 from glove import Glove
 from glove import Corpus
 
@@ -53,6 +50,7 @@ glove.save('glove.model')
         # if not args.train:
         #     print('Loading pre-trained GloVe model')
         #     glove = Glove.load('glove.model')
-
-#print('Querying for %s' % args.query)
-#pprint.pprint(glove.most_similar(args.query, number=10))
+		
+while(1):
+    t = input("Enter Query: ")
+    print(glove.most_similar(t, number=10))
